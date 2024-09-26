@@ -703,7 +703,10 @@ EXPORT_WIN32 uint32_t DecompressLZCLStart(LZCLState_t * state, const uint8_t * s
 
 	// tokens or separate distance, length pairs
 	if (ReadBitstream(&state->bitstream, 1) == 0)
+	{
+		 state->useTokens = 1;
 		 ReadLZCLItem(&state->tokenCodec, &state->bitstream);
+	}
 	else
 	{
 		 ReadLZCLItem(&state->distanceCodec, &state->bitstream);
